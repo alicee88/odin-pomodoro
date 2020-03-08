@@ -1,0 +1,77 @@
+html {
+    box-sizing: border-box;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+
+  .pomodoro {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+
+  .inner-container {
+    
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
+    border: 1px solid #DDDDDD;
+    margin-top: 15rem;
+    padding: 3rem;
+  }
+
+  .clock-container .timer {
+    font-size: 5rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .clock-container h2 {
+    font-size: 3rem;
+    text-align: center;
+    font-weight: normal;
+    margin: 0 auto; 
+  }
+
+  .clock-container .timer-buttons {
+    text-align: center;
+  }
+
+  .clock-container button {
+    width: 3rem;
+    height: 3rem;
+    background: #DDDDDD;
+    border: none;
+    border-radius: 5px;
+      
+  }
+
+  .clock-container {
+    
+  }
+
+  .settings-container {
+    font-size: 1rem;
+  }
+
+  .settings-container input{
+    width: 2rem;
+    font-size: 1rem;
+  }
+
+  .counter {
+    margin: 1rem;
+    opacity: 0.5;
+    
+  }
+
+  .complete-pomodoro {
+    opacity: 1;
+  }
+
+  .pomodoro-counter-container img {
+      
+  }
