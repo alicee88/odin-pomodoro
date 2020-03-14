@@ -6,9 +6,9 @@ const resetButton = document.querySelector('.reset');
 const activityDisplay = document.querySelector('.activity');
 const tomatoCounters = document.querySelectorAll('.counter');
 
-let workTime = 25;
-let shortBreakTime = 5;
-let longBreakTime = 30;
+let workTime = 25 * 60;
+let shortBreakTime = 5 * 60;
+let longBreakTime = 30 * 60;
 let isBreak = false;
 let numPomodoros = 0;
 
@@ -32,44 +32,46 @@ function timer(seconds) {
 }
 
 function switchActivity() {
-  console.log("SWITCHING ACTIVITY!");
-  clearInterval(countdown);
-  isBreak = !isBreak;
-  let newTime; 
+    clearInterval(countdown);
+    isBreak = !isBreak;
+    let newTime; 
 
-  if(numPomodoros >= 4) {
-    console.log("FINISHED!");
-    numPomodoros = 0;
-    isBreak = true;
-    
-    // Start longer break time
-    newTime = longBreakTime * 60;
-  
-  } else {
-    if(isBreak) {
-      console.log("STARTING SHORT BREAK ");
-      // Start short break
-      newTime = shortBreakTime * 60;
+    if(numPomodoros >= 4) {
+      numPomodoros = 0;
+      isBreak = true;
       
+      // Start longer break time
+      newTime = longBreakTime;
+    
     } else {
-      console.log("STARTING WORK TIME ");
-      numPomodoros = numPomodoros + 1;
-      newTime = workTime * 60;
+      if(isBreak) {
+        // Start short break
+        newTime = shortBreakTime;
+        
+      } else {
+        numPomodoros = numPomodoros + 1;
+        newTime = workTime;
+      }
     }
-  }
 
-  let i = 0;
-  tomatoCounters.forEach(counter => {
-    if(i < numPomodoros) {
-      counter.classList.add('complete-pomodoro');
-      console.log("ADDING COMPLETE POMODORO");
-    }
-    i = i + 1;
-  });
+    displayPomodoros();
 
-  isBreak ? activityDisplay.textContent = 'Break' : activityDisplay.textContent = 'Work';
-  secondsLeft = newTime;
-  timer(newTime);
+    isBreak ? activityDisplay.textContent = 'Break' : activityDisplay.textContent = 'Work';
+    secondsLeft = newTime;
+    timer(newTime);
+
+}
+
+function displayPomodoros() {
+
+    let i = 0;
+    tomatoCounters.forEach(counter => {
+      counter.classList.remove('complete-pomodoro');
+      if(i < numPomodoros) {
+        counter.classList.add('complete-pomodoro');
+      }
+      i = i + 1;
+    });
 
 }
 
@@ -83,8 +85,14 @@ function displayTimeLeft(seconds) {
   }
 
   function startTimer() {
-    const seconds = workTime * 60;
-    if(!secondsLeft) secondsLeft = seconds;
+    clearInterval(countdown);
+
+    if(!secondsLeft) secondsLeft = workTime;
+
+    if(activityDisplay.textContent === 'Pomodoro') {
+      activityDisplay.textContent = 'Work';
+    }
+  
     timer(secondsLeft);
   }
 
@@ -94,10 +102,22 @@ function displayTimeLeft(seconds) {
 
   function resetTimer() {
     clearInterval(countdown);
-    const seconds = workTime * 60;
     isBreak = false;
-    secondsLeft = seconds;
-    displayTimeLeft(seconds);
+    secondsLeft = workTime;
+    displayTimeLeft(workTime);
+    numPomodoros = 0;
+    tomatoCounters.forEach(counter => counter.classList.remove('complete-pomodoro'));
+    activityDisplay.textContent = 'Pomodoro';
+  }
+
+  function updateSettings(work, shortBreak, longBreak) {
+  
+    workTime = work * 60;
+    shortBreakTime = shortBreak * 60;
+    longBreakTime = longBreak * 60;
+
+    resetTimer();
+
   }
 
   playButton.addEventListener('click', startTimer);
@@ -106,17 +126,5 @@ function displayTimeLeft(seconds) {
 
   document.settingsForm.addEventListener('submit', function(e) {
     e.preventDefault();
-
-    workTime = this.workMins.value;
-    shortBreakTime = this.shortBreakMins.value;
-    longBreakTime = this.longBreakMins.value;
-
-    displayTimeLeft(workTime * 60);
-    secondsLeft = workTime * 60;
-    
-
-    // const mins = this.minutes.value;
-    // console.log(mins);
-    // timer(mins * 60);
-    // this.reset();
+    updateSettings(this.workMins.value, this.shortBreakMins.value, this.longBreakMins.value);
   });

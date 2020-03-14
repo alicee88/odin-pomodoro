@@ -3,35 +3,35 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200&display=swap" rel="stylesheet"> 
         <title>Pomodoro Clock</title>
     </head>
     <body>
         <div class="pomodoro">
             <div class="inner-container">
-                
                 <div class="clock-container">
-                    <h2 class="activity">Work</h2>
+                    <h2 class="activity">Pomodoro</h2>
                     <div class="timer">25:00</div>
                     <div class="timer-buttons">
-                        <button class="play">▶</button>
-                        <button class="pause">⏸️</button>
-                        <!-- <button>⏹️</button> -->
+                        <button class="play"><i class="fas fa-play"></i></button>
+                        <button class="pause"><i class="fas fa-pause"></i></button>
                         <button class="reset">Reset</button>
                     </div>
                 </div>
                 <div class="pomodoro-counter-container">
-                    <div class="counter"><img src="kawaii-tomato.png" height="50" width="50"></div>
-                    <div class="counter"><img src="kawaii-tomato.png" height="50" width="50"></div>
-                    <div class="counter"><img src="kawaii-tomato.png" height="50" width="50"></div>
-                    <div class="counter"><img src="kawaii-tomato.png" height="50" width="50"></div>
+                    <div class="counter"><img src="pomodoro.png" height="75" width="75"></div>
+                    <div class="counter"><img src="pomodoro.png" height="75" width="75"></div>
+                    <div class="counter"><img src="pomodoro.png" height="75" width="75"></div>
+                    <div class="counter"><img src="pomodoro.png" height="75" width="75"></div>
                 </div>
                 <div class="settings-container">
                     <form name="settingsForm" id="settings">
-                        <p>Work for <input type="text" name="workMins" value="25"> mins, </p>
-                        <p>then take a short <input type="text" name="shortBreakMins" value="5"> min break.</p>
-                        <p>After 4 pomodoros, </p>
-                        <p>take a longer <input type="text" name="longBreakMins" value="30"> min break.</p>
-                        <button>Update</button>
+                        <div class="settings-text">
+                            <p>Work for <input type="text" name="workMins" value="25"> mins<br> then take a short <input type="text" name="shortBreakMins" value="5"> min break.</p>
+                            <p>After 4 pomodoros <br>take a longer <input type="text" name="longBreakMins" value="30"> min break.</p>
+                        
+                            <button>Update</button>
+                        </div>
                     </form>
                     
                 </div>
@@ -39,6 +39,7 @@
         </div>
 
   
-    <script src="scripts.js"></script>  
+    <script src="scripts.js"></script>
+    <script src="https://kit.fontawesome.com/fa7637847c.js" crossorigin="anonymous"></script>
     </body>
 </html>
