@@ -28,7 +28,7 @@ function timer(seconds) {
         }
         // display it
         displayTimeLeft(secondsLeft);
-      }, 250);
+      }, 1000);
 }
 
 function switchActivity() {
@@ -103,6 +103,7 @@ function displayTimeLeft(seconds) {
   function resetTimer() {
     clearInterval(countdown);
     isBreak = false;
+    // Remember how many seconds are remaining
     secondsLeft = workTime;
     displayTimeLeft(workTime);
     numPomodoros = 0;
