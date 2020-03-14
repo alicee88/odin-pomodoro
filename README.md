@@ -1,4 +1,4 @@
-# odin-pomodoro
+# Pomodoro Timer
 
 An Odin Project project to practice HTML/JS/CSS skills.
 
